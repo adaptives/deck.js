@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js ie6" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js ie7" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js ie8" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!-->  <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	
+	<title>Getting Started with deck.js</title>
+	
+	<meta name="description" content="A jQuery library for modern HTML presentations">
+	<meta name="author" content="Caleb Troughton">
+	<meta name="viewport" content="width=1024">
+	
+	<!-- Core and extension CSS files -->
+	<link rel="stylesheet" href="../../core/deck.core.css">
+	<link rel="stylesheet" href="../../extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="../../extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="../../extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="../../extensions/status/deck.status.css">
+	<link rel="stylesheet" href="../../extensions/hash/deck.hash.css">
+	
+	<!-- Theme CSS files (menu swaps these out) -->
+	<link rel="stylesheet" id="style-theme-link" href="../../themes/style/web-2.0.css">
+	<link rel="stylesheet" id="transition-theme-link" href="../../themes/transition/horizontal-slide.css">
+	
+	<!-- Custom CSS just for this page -->
+	<link rel="stylesheet" href="introduction.css">
+	
+	<script src="../../modernizr.custom.js"></script>
+</head>
+
+<body class="deck-container">
+
+<div class="slide" id="new-project">
+	<p><h2>Creating a new Play Project</h2></p>
+	<pre>
+	    play new path_to_project
+	</pre>
+	<p><h2>If you plan to use Eclipse</h2></p>
+	<pre>
+	    play eclipsify path_to_project
+	</pre>
+</div>
+
+<div class="slide" id="run-project">
+	<h2>Running the application</h2>
+	<pre>
+	    play run path_to_project
+	</pre>
+</div>
+
+<div class="slide" id="view-landing-page">
+	<h2>View the application</h2>
+	<p>
+	Point your browser to http://localhost:9000 and you will see the default page
+	</p>
+	<p>
+	    <iframe src="http://localhost:9000" width="1024" height="600" ></iframe>
+	</p>
+</div>
+
+<div class="slide" id="landing-page-location">
+	<h2>Where did that come from ?</h2>
+	<pre>
+	    /app/views/Application/index.html
+	</pre>
+	<h2>Let's display a simple Pomodoro image on the landing page</h2>
+	<ul>
+	    <li>Copy the image to /public/images/</li>
+	    <li>Refactor /app/views/Application/index.html to add the image</li>
+	</ul>
+</div>
+
+<div class="slide" id="request-under-the-hoods">
+    <h2>What's happening under the hoods ?</h2>
+    <img src="./routing.png" />
+</div>
+
+<div class="slide" id="common-layout">
+	<h2>All web applications have a common layout</h2>
+    <p>
+    <ul>
+        <li>In Play a view template can inherit from a super-template</li> 
+        <li>All view templates which inherit from the same super template will share the same layout</li>
+    </p>
+</div>
+
+<div class="slide" id="nested">
+	<h2>Looks pretty lame... Where do I put my stylesheets ?</h2>
+    <p>
+        <pre>
+            /public/stylesheets
+        </pre>
+    </p>
+    <p>
+        Have you guessed what the public directory is doing ?
+    </p>
+</div>
+
+<div class="slide" id="start-the-pomodoro">
+    <h2>Let's start the Pomodoro</h2>'
+    <p>
+        <ul>
+            <li>We will add a form to input the name of the task</li>
+            <li>And then we will add an action to the Application controller which tells us the Pomodoro has started</li>
+        </ul>
+    </p>
+</div>
+
+<div class="slide" id="a-bit-more-about-routing">
+	<h2>Is there any logic in the url in the address bar ?</h2>
+	<p>
+        <ul>
+            <li>Let's change the way this URL is mapped</li>
+            <li>Great ! Now can we have a basic working Pomodoro?</li>            
+        </ul>
+    </p>
+</div>
+
+<div class="slide" id="asynch">
+	<h2>Hey! We do not want to block the thread...</h2>
+	<p>
+        <ul>
+            <li>Play's default threadpool only has n+1 threads for managing requests</li>
+            <li>But Play has a powerful functional programming library with support for Continuations</li>
+            <li>Play also supports Non Blocking Web Requests with the WS library</li>
+        </ul>
+    </p>
+</div>
+
+<div class="slide" id="ajax">
+	<h2>Can we show an activity indicator while the Pomodoro is doing it's stuff ?</h2>
+	<p>
+        <ul>
+            <li>Play comes bundled with jquery 1.5.2 min</li>
+            <li>We can use it to control the visibility of an animated gif to show an ajax loader</li>
+        </ul>
+    </p>
+</div>
+
+<div class="slide" id="pomodoro-entity">
+	<h2>Can I track my Pomodoros ?</h2>
+	<h3>Sure! Play comes bundled with a persistence layer</h3>
+	<p>
+        <ul>
+            <li>Play uses JPA, and comes bundled with a default implementation using Hibernate</li>
+            <li>We need to create a Pomodoro Entity</li>
+            <li>We can use the CRUD module to view the data</li>
+            <li>The CRUD module is highly customizable and we can change the UI to confirm with the rest of our application</li>
+        </ul>
+    </p>
+</div>
+
+<div class="slide" id="auth">
+	<h2>Can I make this application multi-user ?</h2>
+	<h3>I'd love to host this application in the company so the entire team can use it...</h3>
+	<p>
+        <ul>
+            <li>Create a User Entity</li>
+            <li>Import the Secure module</li>
+            <li>Create a login link</li>
+            <li>And then it's a free for all</li>
+        </ul>
+    </p>
+</div>
+
+<div class="slide" id="auth">
+	<h2>We need actual security... not percieved security !</h2>
+	<p>
+        <ul>
+            <li>Redifine Security methods in controllers/Security.java</li>
+            <li>Create some User objects</li>
+            <li>Verify authentication</li>        
+        </ul>
+    </p>
+</div>
+
+<div class="slide" id="auth">
+	<h2>HEY WAIT ! WE CAN'T STORE PASSWORDS IN CLEAR CASE...</h2>
+	<h3>And while we are at it, can we please create a startup job or something to populate some users for us</h3>
+</div>
+
+<div class="slide" id="auth">
+	<h2>We really need to protect the admin area</h2>
+	<ul>
+        <li>Add an isAdmin property to the user Entity</li>
+	    <li>Add a way to check the user's admin status in our Security controller</li>
+	    <li>Protect the admin area</li>
+	</ul>
+</div>
+
+<div class="slide" id="auth">
+	<h2>We need to associate pomodoros with Users</h2>
+	<ul>
+        <li>Join the Pomodoro Entity with the User Entity</li>
+        <li>Make sure that a user is added to a Pomodoro</li>
+	</ul>
+</div>
+
+<div class="slide" id="auth">
+	<h2>Where are my Pomodoros gone ?</h2>
+	<ul>
+        <li>Add a link for each user to view their Pomodoros</li>
+	</ul>
+</div>
+
+<div class="slide" id="auth">
+	<h2>How do we add validations to ensure that a User always enters a task name ?</h2>
+	<ul>
+        <li>There are many ways to add validations</li>
+        <li>One of them is to add annotations to the controller's action method parameters</li>
+	</ul>
+</div>
+
+<div class="slide" id="auth">
+	<h2>All your error messages are printed in English... but I have users from all over the world !</h2>
+	<ul>
+        <li>Play comes with a conf/Messages file</li>
+        <li>We can pull all our messages from the Message file(s)</li>
+	</ul>
+</div>
+
+<div class="slide" id="auth">
+	<h2>I am a PRODUCTIVITY FREAK, can you please email me my pomodoros every hour ?</h2>
+	<ul>
+        <li>Create a scheduled job</li>
+        <li>Generate a PDF using Play's inbuilt library</li>
+        <li>Generate emails using Play's inbuilt library</li>
+	</ul>
+</div>
+
+<div class="slide" id="documentation">
+	<h2>There is much more to Play</h2> 
+	<p style="font-size: 1.4em;">
+	    <div>You can read the documentation locally at</div>
+	    <div> <a target="_blank" href="http://localhost:9000/@documentation">http://localhost:9000/@documentation</a> </div>
+	</p>
+</div>
+
+<div>
+Presentation by Parag Shah - <a href="diycomputerscience.com">diycomputerscience.com</a>
+</div>
+
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<form action="." method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="number" name="slidenum" id="goto-slide">
+	<input type="submit" value="Go">
+</form>
+
+<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+
+<script src="../../jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.6.1.min.js">\x3C/script>')</script>
+
+<!-- Deck Core and extensions -->
+<script src="../../core/deck.core.js"></script>
+<script src="../../extensions/menu/deck.menu.js"></script>
+<script src="../../extensions/goto/deck.goto.js"></script>
+<script src="../../extensions/status/deck.status.js"></script>
+<script src="../../extensions/navigation/deck.navigation.js"></script>
+<script src="../../extensions/hash/deck.hash.js"></script>
+
+<!-- Specific to this page -->
+<script src="introduction.js"></script>
+
+</body>
+</html>
