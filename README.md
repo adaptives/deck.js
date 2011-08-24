@@ -11,12 +11,8 @@ A JavaScript library for building modern HTML presentations. deck.js is flexible
 
 Check out the [documentation page](http://imakewebthings.github.com/deck.js/docs) for more information on the methods, events, and options available in core and all the included extensions.  A sample standard slide deck is included in the package under the `introduction` folder.  You can also [view that sample deck](http://imakewebthings.github.com/deck.js/introduction) online to play with the available style and transition themes.
 
-## Tests & Support
-
-Unit tests are written with [Jasmine](http://pivotal.github.com/jasmine/) and [jasmine-jquery](https://github.com/velesin/jasmine-jquery). You can [run them here](http://imakewebthings.github.com/deck.js/test).
-
-deck.js has been tested with jQuery 1.6+ and works in IE7+, Chrome, FF, Safari, and Opera. The more capable browsers receive greater enhancements, but a basic cutaway slideshow will work for all browsers listed above. Please don't give your presentations in IE6.
-
+## Presentations
+- [Introduction to the Play Framework](https://github.com/adaptives/deck.js/presentations/playframework)
 ## License
 
 Copyright (c) 2011 Caleb Troughton
